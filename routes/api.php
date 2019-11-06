@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'event', 'namespace' => 'Events'], function () {
+    Route::get('/list', 'EventController@index');
+    Route::post('/create', 'EventController@store');
+});
