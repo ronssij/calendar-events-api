@@ -41,8 +41,8 @@ class CreateEventAction
                 $event->title            = $this->data['title'];
                 $event->parent_id        = $this->data['parent_id'];
                 $event->color            = $this->data['color'];
-                $event->start_date       = $this->data['start_date'];
-                $event->end_date         = $this->data['end_date'];
+                $event->start_date       = $this->data['start'];
+                $event->end_date         = $this->data['end'];
                 $isSaved                 = $event->save();
                 $this->data['id']        = $isSaved ? $event->id : null;
                 DB::commit();

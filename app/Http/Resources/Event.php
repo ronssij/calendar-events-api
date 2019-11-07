@@ -16,7 +16,7 @@ class Event extends JsonResource
     {
         return [
             "id"        => $this->id,
-            "title"     => $this->title,
+            "name"      => $this->title,
             "parent_id" => $this->parent_id,
             "color"     => $this->color,
             "start"     => $this->start_date,
