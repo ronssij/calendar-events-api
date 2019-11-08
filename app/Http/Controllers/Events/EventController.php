@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Events;
 
+
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Actions\CreateEventAction;
@@ -30,9 +31,10 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateEventRequest $request, CreateEventAction $createEvent)
+    public function store(CreateEventRequest $request)
     {
-        $data = $createEvent->execute();
+
+        $data = (new CreateEventAction())->execute();
         return response()->json($data);
     }
 
