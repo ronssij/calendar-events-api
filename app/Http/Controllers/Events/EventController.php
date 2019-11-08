@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Actions\CreateEventAction;
 use App\Http\Controllers\Controller;
 
-use App\Http\Resources\Event as EventResource;
 use App\Http\Resources\EventCollection;
+use App\Http\Requests\CreateEventRequest;
+use App\Http\Resources\Event as EventResource;
 
 class EventController extends Controller
 {
@@ -19,7 +20,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::get();
+        $events = Event::whereNotNull('parent_id')->get();
         return new EventCollection($events);
     }
 
@@ -29,7 +30,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateEventAction $createEvent)
+    public function store(CreateEventRequest $request, CreateEventAction $createEvent)
     {
         $data = $createEvent->execute();
         return response()->json($data);
